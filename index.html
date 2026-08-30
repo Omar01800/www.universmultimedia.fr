@@ -3,14 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Univers Multimédia - Réparation smartphones, tablettes, ordinateurs et vente d'accessoires dans l'Ain. Boutiques à Meximieux et Ambérieu-en-Bugey.">
-    <meta name="keywords" content="réparation téléphone, accessoires multimédia, informatique, Ain, Meximieux, Ambérieu">
+    <meta name="description" content="Univers Multimédia : réparation de smartphones, tablettes et ordinateurs, vente d'accessoires et services informatiques dans l'Ain. Boutiques à Meximieux et Ambérieu-en-Bugey. Point relais Vinted Go et Colis Privé à Meximieux.">
     <title>Univers Multimédia - Réparation & Accessoires Multimédia dans l'Ain</title>
+    <link rel="canonical" href="https://universmultimedia.fr/">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Univers Multimédia">
+    <meta property="og:title" content="Univers Multimédia, réparation et accessoires multimédia dans l'Ain">
+    <meta property="og:description" content="Réparation smartphones, tablettes et ordinateurs, accessoires et services informatiques à Meximieux et Ambérieu-en-Bugey. Point relais Vinted Go et Colis Privé à Meximieux.">
+    <meta property="og:url" content="https://universmultimedia.fr/">
+    <meta property="og:image" content="https://universmultimedia.fr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "MobilePhoneStore",
+          "@id": "https://universmultimedia.fr/#boutique-meximieux",
+          "name": "Univers Multimédia Meximieux",
+          "image": "https://universmultimedia.fr/IMAGES/MAP/Boutiques/boutique-meximieux.webp",
+          "url": "https://universmultimedia.fr/",
+          "telephone": "+33782332464",
+          "email": "universmultimedia01@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "45 Rue de Genève",
+            "addressLocality": "Meximieux",
+            "postalCode": "01800",
+            "addressCountry": "FR"
+          },
+          "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:30", "closes": "12:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "14:00", "closes": "18:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:30", "closes": "12:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "15:00", "closes": "18:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "12:00" }
+          ]
+        },
+        {
+          "@type": "MobilePhoneStore",
+          "@id": "https://universmultimedia.fr/#boutique-amberieu",
+          "name": "Univers Multimédia Ambérieu-en-Bugey",
+          "image": "https://universmultimedia.fr/IMAGES/MAP/Boutiques/boutique-amberieu.webp",
+          "url": "https://universmultimedia.fr/",
+          "telephone": "+33652623298",
+          "email": "cyber01500@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "33 Avenue Paul Painlevé",
+            "addressLocality": "Ambérieu-en-Bugey",
+            "postalCode": "01500",
+            "addressCountry": "FR"
+          },
+          "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"], "opens": "09:30", "closes": "12:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"], "opens": "14:00", "closes": "18:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:30", "closes": "12:00" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "15:00", "closes": "18:00" }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -25,6 +87,10 @@
                 <a href="#qui-sommes-nous" class="nav-link">Qui sommes-nous</a>
                 <a href="#contact" class="nav-link">Nous contacter</a>
             </nav>
+            <button class="shop-switch" id="shopSwitch" aria-haspopup="dialog" aria-label="Changer de boutique affichée">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span id="shopSwitchLabel">Choisir ma boutique</span>
+            </button>
             <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -43,17 +109,23 @@
 
             <div class="services">
                 <article class="service-card">
-                    <div class="service-icon" aria-hidden="true">🔧</div>
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
                     <h3>Réparation</h3>
-                    <p>Smartphones, tablettes, ordinateurs - Diagnostic gratuit et réparations professionnelles avec garantie.</p>
+                    <p>Smartphones, tablettes, ordinateurs : diagnostic gratuit et réparations professionnelles avec garantie.</p>
                 </article>
                 <article class="service-card">
-                    <div class="service-icon" aria-hidden="true">🛒</div>
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    </div>
                     <h3>Accessoires</h3>
                     <p>Large gamme d'accessoires multimédia : coques, protections d'écran, câbles, chargeurs et plus encore.</p>
                 </article>
                 <article class="service-card">
-                    <div class="service-icon" aria-hidden="true">💻</div>
+                    <div class="service-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                    </div>
                     <h3>Services Informatiques</h3>
                     <p>Dépannage, maintenance, installations logicielles et conseils personnalisés pour particuliers et professionnels.</p>
                 </article>
@@ -71,7 +143,7 @@
                          class="map-image"
                          width="1600" height="1453"
                          loading="lazy">
-                    
+
                     <!-- Épingle Meximieux -->
                     <div class="map-pin" data-shop="meximieux" tabindex="0" role="button" aria-expanded="false" aria-label="Boutique de Meximieux, afficher les informations">
                         <div class="pin-marker"></div>
@@ -81,9 +153,10 @@
                                      alt="Boutique Univers Multimédia Meximieux"
                                      class="shop-image"
                                      loading="lazy">
+                                <span class="your-shop-chip">Votre boutique</span>
                                 <h3>Meximieux</h3>
                                 <p>Centre-ville</p>
-                                <p class="shop-address"><a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+45+Rue+de+Gen%C3%A8ve+01800+Meximieux" target="_blank" rel="noopener">📍 45 Rue de Genève<br>01800 Meximieux</a></p>
+                                <p class="shop-address"><a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+45+Rue+de+Gen%C3%A8ve+01800+Meximieux" target="_blank" rel="noopener">45 Rue de Genève<br>01800 Meximieux</a></p>
                             </div>
                         </div>
                     </div>
@@ -97,9 +170,10 @@
                                      alt="Boutique Univers Multimédia Ambérieu-en-Bugey"
                                      class="shop-image"
                                      loading="lazy">
+                                <span class="your-shop-chip">Votre boutique</span>
                                 <h3>Ambérieu-en-Bugey</h3>
                                 <p>Zone commerciale</p>
-                                <p class="shop-address"><a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+33+Avenue+Paul+Painlev%C3%A9+01500+Amb%C3%A9rieu-en-Bugey" target="_blank" rel="noopener">📍 33 Av. Paul Painlevé<br>01500 Ambérieu-en-Bugey</a></p>
+                                <p class="shop-address"><a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+33+Avenue+Paul+Painlev%C3%A9+01500+Amb%C3%A9rieu-en-Bugey" target="_blank" rel="noopener">33 Av. Paul Painlevé<br>01500 Ambérieu-en-Bugey</a></p>
                             </div>
                         </div>
                     </div>
@@ -115,60 +189,68 @@
             </div>
 
             <div class="partners-section">
-                <article class="partner-card">
+                <article class="partner-card" data-available="meximieux">
                     <div class="partner-logo-container">
-                        <img src="IMAGES/LOGO/PARTNERS/Vinted_logo.png" 
-                             alt="Logo Vinted Go" 
+                        <img src="IMAGES/LOGO/PARTNERS/Vinted_logo.png"
+                             alt="Logo Vinted Go"
                              class="partner-logo"
                              loading="lazy">
                     </div>
                     <div class="partner-content">
+                        <span class="partner-availability">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Disponible à Meximieux
+                        </span>
                         <h3>Point Relais Vinted Go</h3>
                         <p class="partner-description">
-                            Nos boutiques sont des points relais officiels <strong>Vinted Go</strong>. 
+                            Notre boutique de Meximieux est un point relais officiel <strong>Vinted Go</strong>.
                             Déposez et récupérez vos colis Vinted en toute simplicité pendant nos horaires d'ouverture.
                         </p>
                         <div class="partner-features">
                             <div class="feature-item">
-                                <span class="feature-icon">📦</span>
+                                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span>
                                 <span>Dépôt de colis</span>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">📮</span>
+                                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></svg></span>
                                 <span>Retrait de colis</span>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">⏰</span>
+                                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
                                 <span>Horaires étendus</span>
                             </div>
                         </div>
                     </div>
                 </article>
 
-                <article class="partner-card">
+                <article class="partner-card" data-available="meximieux">
                     <div class="partner-logo-container">
-                        <img src="IMAGES/LOGO/PARTNERS/mceclip0.png" 
-                             alt="Logo Colis Privé" 
+                        <img src="IMAGES/LOGO/PARTNERS/mceclip0.png"
+                             alt="Logo Colis Privé"
                              class="partner-logo"
                              loading="lazy">
                     </div>
                     <div class="partner-content">
+                        <span class="partner-availability">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Disponible à Meximieux
+                        </span>
                         <h3>Point Relais Colis Privé</h3>
                         <p class="partner-description">
-                            Nous sommes également partenaires de <strong>Colis Privé</strong>. 
-                            Profitez de nos boutiques pour envoyer et recevoir vos colis en toute sécurité.
+                            Notre boutique de Meximieux est également partenaire de <strong>Colis Privé</strong>.
+                            Profitez-en pour envoyer et recevoir vos colis en toute sécurité.
                         </p>
                         <div class="partner-features">
                             <div class="feature-item">
-                                <span class="feature-icon">📦</span>
+                                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span>
                                 <span>Dépôt de colis</span>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">📮</span>
+                                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></svg></span>
                                 <span>Retrait de colis</span>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">🔒</span>
+                                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
                                 <span>Service sécurisé</span>
                             </div>
                         </div>
@@ -176,14 +258,22 @@
                 </article>
             </div>
 
+            <div class="partners-empty" id="partnersEmpty" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                <h3>Les points relais sont à Meximieux</h3>
+                <p>La boutique d'Ambérieu-en-Bugey ne propose pas encore de point relais. Retrouvez Vinted Go et Colis Privé au 45 Rue de Genève, à Meximieux.</p>
+                <button class="btn-primary" data-choose="meximieux">Voir la boutique de Meximieux</button>
+            </div>
+
             <div class="info-banner">
-                <div class="info-icon">ℹ️</div>
+                <div class="info-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                </div>
                 <div class="info-content">
                     <h4>Informations pratiques</h4>
                     <p>
-                        Nos deux boutiques de <strong>Meximieux</strong> et <strong>Ambérieu-en-Bugey</strong> 
-                        acceptent les colis Vinted Go et Colis Privé. Munissez-vous de votre code de retrait ou d'un QR 
-                        code pour un traitement rapide de votre colis.
+                        Notre boutique de <strong>Meximieux</strong> accepte les colis Vinted Go et Colis Privé.
+                        Munissez-vous de votre code de retrait ou d'un QR code pour un traitement rapide de votre colis.
                     </p>
                 </div>
             </div>
@@ -205,72 +295,151 @@
 
         <!-- PAGE CONTACT -->
         <section id="page-contact" class="page-content">
-            <div class="contact-container">
-                <div class="schedule-table">
-                    <h2>Horaires d'ouverture</h2>
-                    <div class="schedule-row">
-                        <span class="day">Lundi</span>
-                        <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">Mardi</span>
-                        <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">Mercredi</span>
-                        <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">Jeudi</span>
-                        <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">Vendredi</span>
-                        <span class="hours open">09:30 - 12:00 | 15:00 - 18:00</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">Samedi</span>
-                        <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
-                    </div>
-                    <div class="schedule-row">
-                        <span class="day">Dimanche</span>
-                        <span class="hours closed">Fermé</span>
-                    </div>
-                </div>
-
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">📱</div>
-                        <div class="contact-details">
-                            <h3>Téléphone</h3>
-                            <p>
-                                <a href="tel:+33782332464">07 82 33 24 64</a> (Meximieux)<br>
-                                <a href="tel:+33652623298">06 52 62 32 98</a> (Ambérieu)
-                            </p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">✉️</div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>
-                                <a href="mailto:universmultimedia01@gmail.com">universmultimedia01@gmail.com</a> (Meximieux)<br>
-                                <a href="mailto:cyber01500@gmail.com">cyber01500@gmail.com</a> (Ambérieu-en-Bugey)
-                            </p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">📍</div>
-                        <div class="contact-details">
-                            <h3>Adresses</h3>
-                            <p>
-                                <a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+45+Rue+de+Gen%C3%A8ve+01800+Meximieux" target="_blank" rel="noopener">45 Rue de Genève, 01800 Meximieux</a><br>
-                                <a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+33+Avenue+Paul+Painlev%C3%A9+01500+Amb%C3%A9rieu-en-Bugey" target="_blank" rel="noopener">33 Av. Paul Painlevé, 01500 Ambérieu-en-Bugey</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero">
+                <h1>Nous contacter</h1>
+                <p>Appelez, écrivez ou passez directement en boutique : nous sommes là pour vous aider.</p>
             </div>
+
+            <div class="contact-container">
+                <section class="shop-block" data-shop-block="meximieux" aria-label="Boutique de Meximieux">
+                    <div class="shop-block-head">
+                        <h2>Meximieux</h2>
+                        <span class="your-shop-chip">Votre boutique</span>
+                    </div>
+                    <div class="schedule-table">
+                        <h3>Horaires d'ouverture</h3>
+                        <div class="schedule-row">
+                            <span class="day">Lundi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Mardi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Mercredi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Jeudi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Vendredi</span>
+                            <span class="hours open">09:30 - 12:00 | 15:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Samedi</span>
+                            <span class="hours open">09:30 - 12:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Dimanche</span>
+                            <span class="hours closed">Fermé</span>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Téléphone</h3>
+                                <p><a href="tel:+33782332464">07 82 33 24 64</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p><a href="mailto:universmultimedia01@gmail.com">universmultimedia01@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Adresse</h3>
+                                <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+45+Rue+de+Gen%C3%A8ve+01800+Meximieux" target="_blank" rel="noopener">45 Rue de Genève, 01800 Meximieux</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="shop-block" data-shop-block="amberieu" aria-label="Boutique d'Ambérieu-en-Bugey">
+                    <div class="shop-block-head">
+                        <h2>Ambérieu-en-Bugey</h2>
+                        <span class="your-shop-chip">Votre boutique</span>
+                    </div>
+                    <div class="schedule-table">
+                        <h3>Horaires d'ouverture</h3>
+                        <div class="schedule-row">
+                            <span class="day">Lundi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Mardi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Mercredi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Jeudi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Vendredi</span>
+                            <span class="hours open">09:30 - 12:00 | 15:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Samedi</span>
+                            <span class="hours open">09:30 - 12:00 | 14:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="day">Dimanche</span>
+                            <span class="hours closed">Fermé</span>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Téléphone</h3>
+                                <p><a href="tel:+33652623298">06 52 62 32 98</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p><a href="mailto:cyber01500@gmail.com">cyber01500@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Adresse</h3>
+                                <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Univers+Multim%C3%A9dia+33+Avenue+Paul+Painlev%C3%A9+01500+Amb%C3%A9rieu-en-Bugey" target="_blank" rel="noopener">33 Av. Paul Painlevé, 01500 Ambérieu-en-Bugey</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <p class="contact-switch-note" id="contactSwitchNote" hidden>
+                Vous cherchez l'autre boutique ?
+                <button type="button" class="linklike" id="contactSwitchBtn">Changer de boutique</button>
+            </p>
         </section>
     </main>
 
@@ -279,10 +448,31 @@
         <p>Réparation • Vente d'accessoires • Services informatiques</p>
     </footer>
 
+    <!-- POP-UP DE CHOIX DE BOUTIQUE -->
+    <div class="shop-chooser" id="shopChooser" role="dialog" aria-modal="true" aria-labelledby="shopChooserTitle" hidden>
+        <div class="chooser-backdrop" data-chooser-skip></div>
+        <div class="chooser-card">
+            <img src="icon-192.png" alt="" width="52" height="52" class="chooser-logo">
+            <h2 id="shopChooserTitle">Choisissez votre boutique</h2>
+            <p class="chooser-intro">Les horaires et services affichés s'adapteront à la boutique choisie.</p>
+            <div class="chooser-options">
+                <button type="button" class="chooser-option" data-choose="meximieux">
+                    <img src="IMAGES/MAP/Boutiques/boutique-meximieux.webp" alt="Devanture de la boutique de Meximieux" class="chooser-photo" width="640" height="853">
+                    <span class="chooser-city">Meximieux</span>
+                    <span class="chooser-line">45 Rue de Genève</span>
+                    <span class="chooser-tag">Point relais Vinted Go et Colis Privé</span>
+                </button>
+                <button type="button" class="chooser-option" data-choose="amberieu">
+                    <img src="IMAGES/MAP/Boutiques/boutique-amberieu.webp" alt="Devanture de la boutique d'Ambérieu-en-Bugey" class="chooser-photo" width="408" height="306">
+                    <span class="chooser-city">Ambérieu-en-Bugey</span>
+                    <span class="chooser-line">33 Av. Paul Painlevé</span>
+                    <span class="chooser-tag">Ouvert le samedi après-midi</span>
+                </button>
+            </div>
+            <button type="button" class="chooser-skip" data-chooser-skip>Continuer avec les deux boutiques</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
