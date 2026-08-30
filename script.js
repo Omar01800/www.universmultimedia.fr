@@ -87,61 +87,50 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// ===== GESTION DES ÉPINGLES MAP (MOBILE) =====
+// ===== GESTION DES ÉPINGLES MAP (TAP + CLAVIER) =====
 const mapPins = document.querySelectorAll('.map-pin');
 
-// Sur mobile, permettre le tap pour afficher les infos
-if (window.innerWidth <= 768) {
-    mapPins.forEach(pin => {
-        pin.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            // Fermer les autres épingles
-            mapPins.forEach(p => {
-                if (p !== pin) {
-                    p.classList.remove('active');
-                }
-            });
-            
-            // Toggle l'épingle actuelle
-            pin.classList.toggle('active');
-        });
-    });
+const setPinState = (pin, isActive) => {
+    pin.classList.toggle('active', isActive);
+    pin.setAttribute('aria-expanded', isActive);
+};
 
-    // Fermer les épingles en cliquant dehors
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.map-pin')) {
-            mapPins.forEach(p => p.classList.remove('active'));
+const closeOtherPins = (except) => {
+    mapPins.forEach(p => {
+        if (p !== except) {
+            setPinState(p, false);
         }
     });
-}
+};
 
-// ===== OPTIMISATION PERFORMANCE - LAZY LOADING =====
-// Vérifier si IntersectionObserver est supporté
-if ('IntersectionObserver' in window) {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.src; // Force le chargement
-                observer.unobserve(img);
-            }
-        });
+mapPins.forEach(pin => {
+    // Tap ou clic : ouvrir/fermer la fiche boutique
+    pin.addEventListener('click', (e) => {
+        // Laisser les liens de la fiche (adresse) fonctionner normalement
+        if (e.target.closest('a')) return;
+        e.stopPropagation();
+        closeOtherPins(pin);
+        setPinState(pin, !pin.classList.contains('active'));
     });
 
-    images.forEach(img => imageObserver.observe(img));
-}
-
-// ===== AMÉLIORATION ACCESSIBILITÉ - NAVIGATION CLAVIER =====
-navLinks.forEach((link, index) => {
-    link.addEventListener('keydown', (e) => {
+    // Accessibilité clavier : Entrée/Espace pour ouvrir, Échap pour fermer
+    pin.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            link.click();
+            closeOtherPins(pin);
+            setPinState(pin, !pin.classList.contains('active'));
+        } else if (e.key === 'Escape') {
+            setPinState(pin, false);
+            pin.blur();
         }
     });
+});
+
+// Fermer les fiches en cliquant ailleurs
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.map-pin')) {
+        closeOtherPins(null);
+    }
 });
 
 // ===== DÉTECTION DU CHANGEMENT D'ORIENTATION =====
@@ -166,7 +155,4 @@ document.addEventListener('DOMContentLoaded', () => {
     pages.forEach(page => {
         page.style.transition = 'opacity 0.3s ease';
     });
-
-    console.log('🚀 Univers Multimédia - Site initialisé avec succès');
-
 });

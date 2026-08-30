@@ -31,7 +31,7 @@ body {
     width: 100%;
     min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-image: url("IMAGES/LOOP_MOTIF/UNIVERS - MULTIMEDIA LOOP.png");
+    background-image: url("IMAGES/LOOP_MOTIF/motif-univers.webp");
     background-repeat: repeat;
     background-size: 2000px 1125px;
     animation: bg-scroll 90s linear infinite;
@@ -610,9 +610,22 @@ main {
     z-index: 100;
 }
 
-.map-pin:hover .shop-info {
+.map-pin:hover .shop-info,
+.map-pin.active .shop-info,
+.map-pin:focus-within .shop-info {
     opacity: 1;
     pointer-events: auto;
+}
+
+.map-pin.active .pin-marker,
+.map-pin:focus-visible .pin-marker {
+    transform: rotate(-45deg) scale(1.15);
+    background: var(--primary-hover);
+}
+
+.map-pin:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
 }
 
 .shop-card {
@@ -626,7 +639,9 @@ main {
     transition: var(--transition);
 }
 
-.map-pin:hover .shop-card {
+.map-pin:hover .shop-card,
+.map-pin.active .shop-card,
+.map-pin:focus-within .shop-card {
     transform: scale(1);
 }
 
@@ -656,6 +671,17 @@ main {
     color: var(--gray-text) !important;
     margin-top: 0.5rem !important;
     line-height: 1.4;
+}
+
+.shop-address a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: var(--transition-fast);
+}
+
+.shop-address a:hover {
+    color: var(--primary-color);
 }
 
 /* ===== FOOTER ===== */
