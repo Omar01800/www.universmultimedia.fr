@@ -341,6 +341,17 @@ main {
     margin-bottom: 1.5rem;
 }
 
+.content-card a {
+    color: var(--primary-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: var(--transition-fast);
+}
+
+.content-card a:hover {
+    color: var(--primary-color);
+}
+
 /* ===== CONTACT PAGE ===== */
 .contact-container {
     display: grid;
@@ -804,6 +815,17 @@ footer p {
     line-height: 1.6;
 }
 
+.footer-link {
+    color: #b5b5b5;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: var(--transition-fast);
+}
+
+.footer-link:hover {
+    color: var(--primary-color);
+}
+
 /* ===== PAGE CONTENT DISPLAY ===== */
 .page-content {
     display: none;
@@ -1119,6 +1141,33 @@ footer p {
 
 .chooser-skip:hover {
     color: var(--dark-text);
+}
+
+.chooser-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2f2;
+    border: none;
+    border-radius: 50%;
+    color: #555555;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.chooser-close:hover {
+    background: #e4e4e4;
+    color: var(--dark-text);
+}
+
+.chooser-close svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* ===== PUCE « VOTRE BOUTIQUE » ===== */

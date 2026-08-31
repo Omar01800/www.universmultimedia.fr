@@ -441,17 +441,47 @@
                 <button type="button" class="linklike" id="contactSwitchBtn">Changer de boutique</button>
             </p>
         </section>
+
+        <!-- PAGE MENTIONS LÉGALES -->
+        <section id="page-mentions-legales" class="page-content">
+            <div class="hero">
+                <h1>Mentions légales</h1>
+                <p>Informations légales relatives au site universmultimedia.fr.</p>
+            </div>
+            <article class="content-card">
+                <h3>Éditeur du site</h3>
+                <p>
+                    Le site universmultimedia.fr est édité par <strong>Univers Multimédia</strong>, entreprise individuelle exploitée par Hicham Hafidi.<br>
+                    SIRET : 753 891 480 00026<br>
+                    Boutiques : 45 Rue de Genève, 01800 Meximieux et 33 Av. Paul Painlevé, 01500 Ambérieu-en-Bugey<br>
+                    Téléphone : <a href="tel:+33782332464">07 82 33 24 64</a><br>
+                    Email : <a href="mailto:universmultimedia01@gmail.com">universmultimedia01@gmail.com</a>
+                </p>
+                <h3>Directeur de la publication</h3>
+                <p>Hicham Hafidi.</p>
+                <h3>Hébergement</h3>
+                <p>Le site est hébergé par Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, États-Unis (www.cloudflare.com).</p>
+                <h3>Propriété intellectuelle</h3>
+                <p>L'ensemble du contenu de ce site (textes, images, logos) est la propriété d'Univers Multimédia, sauf mention contraire. Les marques et logos Vinted Go et Colis Privé appartiennent à leurs détenteurs respectifs. Toute reproduction sans autorisation préalable est interdite.</p>
+                <h3>Données personnelles</h3>
+                <p>Ce site ne collecte aucune donnée personnelle et n'utilise aucun cookie de suivi ou de publicité. Votre préférence de boutique est enregistrée uniquement dans votre navigateur, pour la durée de votre visite, et n'est transmise à personne. Pour toute question, écrivez-nous à <a href="mailto:universmultimedia01@gmail.com">universmultimedia01@gmail.com</a>.</p>
+            </article>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2026 Univers Multimédia, Tous droits réservés</p>
         <p>Réparation • Vente d'accessoires • Services informatiques</p>
+        <p><a href="#mentions-legales" class="footer-link" data-page-link>Mentions légales</a></p>
     </footer>
 
     <!-- POP-UP DE CHOIX DE BOUTIQUE -->
     <div class="shop-chooser" id="shopChooser" role="dialog" aria-modal="true" aria-labelledby="shopChooserTitle" hidden>
-        <div class="chooser-backdrop" data-chooser-skip></div>
+        <div class="chooser-backdrop" data-chooser-dismiss></div>
         <div class="chooser-card">
+            <button type="button" class="chooser-close" data-chooser-dismiss aria-label="Fermer sans changer de boutique">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
             <img src="icon-192.png" alt="" width="52" height="52" class="chooser-logo">
             <h2 id="shopChooserTitle">Choisissez votre boutique</h2>
             <p class="chooser-intro">Les horaires et services affichés s'adapteront à la boutique choisie.</p>
@@ -469,7 +499,7 @@
                     <span class="chooser-tag">Ouvert le samedi après-midi</span>
                 </button>
             </div>
-            <button type="button" class="chooser-skip" data-chooser-skip>Continuer avec les deux boutiques</button>
+            <button type="button" class="chooser-skip">Continuer avec les deux boutiques</button>
         </div>
     </div>
 

@@ -6,7 +6,7 @@ const pages = document.querySelectorAll('.page-content');
 const header = document.querySelector('header');
 
 // ===== NAVIGATION ENTRE LES PAGES =====
-const PAGE_IDS = ['accueil', 'boutiques', 'partenaires', 'qui-sommes-nous', 'contact'];
+const PAGE_IDS = ['accueil', 'boutiques', 'partenaires', 'qui-sommes-nous', 'contact', 'mentions-legales'];
 let pageTransition = null;
 
 function showPage(target, updateHash = true) {
@@ -57,6 +57,14 @@ navLinks.forEach(link => {
         nav.classList.remove('active');
         burger.setAttribute('aria-expanded', 'false');
 
+        showPage(link.getAttribute('href').substring(1));
+    });
+});
+
+// Liens internes hors navigation principale (pied de page)
+document.querySelectorAll('a[data-page-link]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
         showPage(link.getAttribute('href').substring(1));
     });
 });
@@ -148,6 +156,16 @@ function closeChooser() {
     }
 }
 
+// Fermer la pop-up sans rien changer (croix, clic hors de la fenêtre, Échap).
+// Si aucun choix n'a encore été fait cette visite, on retient le mode deux boutiques
+// pour ne pas rouvrir la pop-up à chaque chargement.
+function dismissChooser() {
+    if (!readChoice()) {
+        saveChoice('toutes');
+    }
+    closeChooser();
+}
+
 // Choix d'une boutique (pop-up et boutons du site)
 document.querySelectorAll('[data-choose]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -156,22 +174,24 @@ document.querySelectorAll('[data-choose]').forEach(btn => {
     });
 });
 
-// Continuer sans choisir : le site affiche les deux boutiques
-shopChooser.querySelectorAll('[data-chooser-skip]').forEach(el => {
-    el.addEventListener('click', () => {
-        applyShop(null);
-        closeChooser();
-    });
+// Fermeture sans changement
+shopChooser.querySelectorAll('[data-chooser-dismiss]').forEach(el => {
+    el.addEventListener('click', dismissChooser);
+});
+
+// Bouton explicite : afficher les deux boutiques
+shopChooser.querySelector('.chooser-skip').addEventListener('click', () => {
+    applyShop(null);
+    closeChooser();
 });
 
 shopSwitch.addEventListener('click', openChooser);
 document.getElementById('contactSwitchBtn').addEventListener('click', openChooser);
 
-// Clavier dans la pop-up : Échap pour continuer sans choisir, Tab reste dans la fenêtre
+// Clavier dans la pop-up : Échap ferme sans rien changer, Tab reste dans la fenêtre
 shopChooser.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        applyShop(null);
-        closeChooser();
+        dismissChooser();
         return;
     }
     if (e.key === 'Tab') {
