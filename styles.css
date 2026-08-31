@@ -14,7 +14,7 @@
     --primary-color: #ff6d00;
     --primary-hover: #ff8534;
     --primary-deep: #a04400;
-    --page-bg: #131313;
+    --page-bg: #ffffff;
     --dark-bg: #1a1a1a;
     --medium-bg: #252525;
     --light-text: #ffffff;
@@ -30,7 +30,7 @@
 
 html {
     scroll-behavior: smooth;
-    scrollbar-color: #3a3a3a #131313;
+    scrollbar-color: #c4c4c4 #f4f4f4;
 }
 
 body {
@@ -375,7 +375,7 @@ main {
 }
 
 .shop-block-head h2 {
-    color: var(--light-text);
+    color: var(--dark-text);
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -1348,7 +1348,7 @@ body[data-shop="amberieu"] .map-pin[data-shop="amberieu"] .pin-marker {
 .contact-switch-note {
     text-align: center;
     margin: 2rem auto 0;
-    color: #b5b5b5;
+    color: var(--gray-text);
     font-size: 0.9rem;
 }
 
