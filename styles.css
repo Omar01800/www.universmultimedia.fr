@@ -199,6 +199,7 @@ nav a.active {
     font-size: 0.85rem;
     font-weight: 600;
     padding: 0.45rem 0.9rem;
+    min-height: 38px;
     border-radius: 999px;
     cursor: pointer;
     transition: var(--transition-fast);
@@ -220,9 +221,11 @@ nav a.active {
 .burger {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
     cursor: pointer;
-    padding: 10px;
+    padding: 12px 10px;
+    min-height: 44px;
     background: transparent;
     border: none;
 }
@@ -1870,12 +1873,13 @@ html.js .reveal.revealed {
     .mobile-actions .btn-primary,
     .mobile-actions .btn-ghost {
         justify-content: center;
-        padding: 0.7rem 1rem;
+        padding: 0.8rem 1rem;
+        min-height: 44px;
         font-size: 0.95rem;
     }
 
     body {
-        padding-bottom: 68px;
+        padding-bottom: 74px;
     }
 }
 

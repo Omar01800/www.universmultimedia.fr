@@ -199,15 +199,14 @@ const SHOP_COORDS = {
 const geoBtn = document.getElementById('chooserGeo');
 const geoStatus = document.getElementById('chooserGeoStatus');
 
-geoBtn.addEventListener('click', () => {
-    if (!navigator.geolocation) {
-        geoStatus.hidden = false;
-        geoStatus.textContent = 'La géolocalisation n\'est pas disponible sur cet appareil.';
-        return;
-    }
-    geoBtn.disabled = true;
+function showGeoStatus(message) {
     geoStatus.hidden = false;
-    geoStatus.textContent = 'Recherche de la boutique la plus proche...';
+    geoStatus.textContent = message;
+}
+
+function locateNearestShop() {
+    geoBtn.disabled = true;
+    showGeoStatus('Recherche de la boutique la plus proche...');
     navigator.geolocation.getCurrentPosition((pos) => {
         const rad = Math.PI / 180;
         const distance = (c) => {
@@ -223,10 +222,35 @@ geoBtn.addEventListener('click', () => {
         geoStatus.hidden = true;
         applyShop(shop);
         closeChooser();
-    }, () => {
+    }, (err) => {
         geoBtn.disabled = false;
-        geoStatus.textContent = 'Position indisponible, choisissez votre boutique ci-dessus.';
-    }, { timeout: 8000, maximumAge: 600000 });
+        if (err.code === 1) {
+            showGeoStatus('La localisation est bloquée pour ce site dans votre navigateur. Autorisez-la puis réessayez, ou choisissez votre boutique ci-dessus.');
+        } else if (err.code === 3) {
+            showGeoStatus('La recherche de position a pris trop de temps. Réessayez, ou choisissez votre boutique ci-dessus.');
+        } else {
+            showGeoStatus('Position indisponible pour le moment, choisissez votre boutique ci-dessus.');
+        }
+    }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+}
+
+geoBtn.addEventListener('click', () => {
+    if (!navigator.geolocation) {
+        showGeoStatus('La géolocalisation n\'est pas disponible sur cet appareil.');
+        return;
+    }
+    // Permission déjà refusée : message utile plutôt qu'un échec silencieux
+    if (navigator.permissions && navigator.permissions.query) {
+        navigator.permissions.query({ name: 'geolocation' }).then((p) => {
+            if (p.state === 'denied') {
+                showGeoStatus('La localisation est bloquée pour ce site dans votre navigateur. Autorisez-la puis réessayez, ou choisissez votre boutique ci-dessus.');
+            } else {
+                locateNearestShop();
+            }
+        }).catch(locateNearestShop);
+    } else {
+        locateNearestShop();
+    }
 });
 
 shopSwitch.addEventListener('click', openChooser);
