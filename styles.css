@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+/* L'attribut hidden doit toujours gagner, meme face a un display explicite */
+[hidden] {
+    display: none !important;
+}
+
 :root {
     --primary-color: #ff6d00;
     --primary-hover: #ff8534;
@@ -1126,21 +1131,42 @@ footer p {
     margin: 0.6rem 0.5rem 0;
 }
 
-.chooser-skip {
-    background: none;
-    border: none;
+.chooser-geo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: white;
+    border: 1px solid #dddddd;
+    border-radius: 999px;
     font: inherit;
     font-size: 0.85rem;
+    font-weight: 500;
     color: var(--gray-text);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    padding: 0.55rem 1.1rem;
     cursor: pointer;
-    padding: 0.5rem;
     transition: var(--transition-fast);
 }
 
-.chooser-skip:hover {
-    color: var(--dark-text);
+.chooser-geo:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-deep);
+}
+
+.chooser-geo:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.chooser-geo svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.chooser-geo-status {
+    font-size: 0.8rem;
+    color: var(--gray-text);
+    margin-top: 0.6rem;
 }
 
 .chooser-close {

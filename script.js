@@ -119,17 +119,12 @@ function saveChoice(value) {
 }
 
 function applyShop(shop) {
-    if (shop) {
-        document.body.dataset.shop = shop;
-        shopSwitchLabel.textContent = SHOP_LABELS[shop];
-        saveChoice(shop);
-    } else {
-        delete document.body.dataset.shop;
-        shopSwitchLabel.textContent = 'Choisir ma boutique';
-        saveChoice('toutes');
-    }
+    if (!SHOP_LABELS[shop]) return;
+    document.body.dataset.shop = shop;
+    shopSwitchLabel.textContent = SHOP_LABELS[shop];
+    saveChoice(shop);
     partnersEmpty.hidden = shop !== 'amberieu';
-    contactSwitchNote.hidden = !shop;
+    contactSwitchNote.hidden = false;
     shopChooser.querySelectorAll('.chooser-option').forEach(btn => {
         btn.classList.toggle('selected', btn.dataset.choose === shop);
     });
@@ -137,6 +132,9 @@ function applyShop(shop) {
 
 function openChooser() {
     lastFocused = document.activeElement;
+    // Tant qu'aucune boutique n'est choisie, le choix est obligatoire :
+    // pas de croix, et la fermeture par clic dehors ou Echap est neutralisee
+    shopChooser.querySelector('.chooser-close').hidden = !document.body.dataset.shop;
     shopChooser.hidden = false;
     document.body.classList.add('no-scroll');
     requestAnimationFrame(() => {
@@ -157,12 +155,9 @@ function closeChooser() {
 }
 
 // Fermer la pop-up sans rien changer (croix, clic hors de la fenêtre, Échap).
-// Si aucun choix n'a encore été fait cette visite, on retient le mode deux boutiques
-// pour ne pas rouvrir la pop-up à chaque chargement.
+// Possible uniquement quand une boutique est déjà choisie : le premier choix est obligatoire.
 function dismissChooser() {
-    if (!readChoice()) {
-        saveChoice('toutes');
-    }
+    if (!document.body.dataset.shop) return;
     closeChooser();
 }
 
@@ -179,10 +174,42 @@ shopChooser.querySelectorAll('[data-chooser-dismiss]').forEach(el => {
     el.addEventListener('click', dismissChooser);
 });
 
-// Bouton explicite : afficher les deux boutiques
-shopChooser.querySelector('.chooser-skip').addEventListener('click', () => {
-    applyShop(null);
-    closeChooser();
+// Géolocalisation : sélectionne la boutique la plus proche du visiteur
+const SHOP_COORDS = {
+    meximieux: { lat: 45.9066, lng: 5.1946 },
+    amberieu: { lat: 45.9539, lng: 5.3455 }
+};
+const geoBtn = document.getElementById('chooserGeo');
+const geoStatus = document.getElementById('chooserGeoStatus');
+
+geoBtn.addEventListener('click', () => {
+    if (!navigator.geolocation) {
+        geoStatus.hidden = false;
+        geoStatus.textContent = 'La géolocalisation n\'est pas disponible sur cet appareil.';
+        return;
+    }
+    geoBtn.disabled = true;
+    geoStatus.hidden = false;
+    geoStatus.textContent = 'Recherche de la boutique la plus proche...';
+    navigator.geolocation.getCurrentPosition((pos) => {
+        const rad = Math.PI / 180;
+        const distance = (c) => {
+            const dLat = (c.lat - pos.coords.latitude) * rad;
+            const dLng = (c.lng - pos.coords.longitude) * rad;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(pos.coords.latitude * rad) * Math.cos(c.lat * rad) *
+                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+            return Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        };
+        const shop = distance(SHOP_COORDS.meximieux) <= distance(SHOP_COORDS.amberieu) ? 'meximieux' : 'amberieu';
+        geoBtn.disabled = false;
+        geoStatus.hidden = true;
+        applyShop(shop);
+        closeChooser();
+    }, () => {
+        geoBtn.disabled = false;
+        geoStatus.textContent = 'Position indisponible, choisissez votre boutique ci-dessus.';
+    }, { timeout: 8000, maximumAge: 600000 });
 });
 
 shopSwitch.addEventListener('click', openChooser);
@@ -195,7 +222,7 @@ shopChooser.addEventListener('keydown', (e) => {
         return;
     }
     if (e.key === 'Tab') {
-        const focusables = chooserCard.querySelectorAll('button');
+        const focusables = [...chooserCard.querySelectorAll('button')].filter(b => !b.hidden && !b.disabled);
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
         if (e.shiftKey && document.activeElement === first) {
@@ -280,11 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
         showPage(hash, false);
     }
 
-    // Boutique déjà choisie pendant cette visite ?
+    // Boutique déjà choisie pendant cette visite ? Sinon le choix est obligatoire.
     const saved = readChoice();
-    if (saved === 'toutes') {
-        applyShop(null);
-    } else if (SHOP_LABELS[saved]) {
+    if (SHOP_LABELS[saved]) {
         applyShop(saved);
     } else {
         openChooser();
