@@ -1266,6 +1266,34 @@ body[data-shop="amberieu"] .map-pin[data-shop="amberieu"] .pin-marker {
     height: 13px;
 }
 
+.partner-availability.ended {
+    color: #6b6b6b;
+    background: #efefef;
+}
+
+/* Partenariat terminé : la carte reste informative mais s'efface visuellement */
+.partner-card.discontinued .partner-logo {
+    filter: grayscale(1);
+    opacity: 0.55;
+}
+
+.partner-card.discontinued .partner-logo-container {
+    border-bottom-color: #d9d9d9;
+}
+
+.partner-card.discontinued:hover {
+    transform: none;
+    box-shadow: var(--shadow-md);
+}
+
+.partner-card.discontinued h3 {
+    color: #555555;
+}
+
+.partner-card.discontinued .partner-description strong {
+    color: #555555;
+}
+
 /* ===== ÉTAT VIDE PARTENAIRES (AMBÉRIEU) ===== */
 .partners-empty {
     background: white;
