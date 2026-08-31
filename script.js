@@ -101,6 +101,16 @@ window.addEventListener('scroll', () => {
 
 // ===== CHOIX DE LA BOUTIQUE =====
 const SHOP_LABELS = { meximieux: 'Meximieux', amberieu: 'Ambérieu-en-Bugey' };
+const SHOP_INFOS = {
+    meximieux: {
+        tel: '+33782332464',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Univers+Multim%C3%A9dia+45+Rue+de+Gen%C3%A8ve+01800+Meximieux'
+    },
+    amberieu: {
+        tel: '+33652623298',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Univers+Multim%C3%A9dia+33+Avenue+Paul+Painlev%C3%A9+01500+Amb%C3%A9rieu-en-Bugey'
+    }
+};
 const STORAGE_KEY = 'um-boutique';
 const shopChooser = document.getElementById('shopChooser');
 const chooserCard = shopChooser.querySelector('.chooser-card');
@@ -127,6 +137,13 @@ function applyShop(shop) {
     contactSwitchNote.hidden = false;
     shopChooser.querySelectorAll('.chooser-option').forEach(btn => {
         btn.classList.toggle('selected', btn.dataset.choose === shop);
+    });
+    // Les boutons Appeler et Itinéraire suivent la boutique choisie
+    document.querySelectorAll('[data-shop-tel]').forEach(a => {
+        a.href = 'tel:' + SHOP_INFOS[shop].tel;
+    });
+    document.querySelectorAll('[data-shop-maps]').forEach(a => {
+        a.href = SHOP_INFOS[shop].maps;
     });
 }
 
@@ -280,6 +297,22 @@ document.addEventListener('click', (e) => {
         closeOtherPins(null);
     }
 });
+
+// ===== APPARITION DOUCE DES SECTIONS AU DÉFILEMENT =====
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && revealEls.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+} else {
+    revealEls.forEach(el => el.classList.add('revealed'));
+}
 
 // ===== DÉTECTION DU CHANGEMENT D'ORIENTATION =====
 window.addEventListener('orientationchange', () => {

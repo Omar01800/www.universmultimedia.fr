@@ -10,6 +10,21 @@
     display: none !important;
 }
 
+/* ===== POLICES AUTO-HÉBERGÉES (fichiers variables) ===== */
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('FONTS/space-grotesk-latin.woff2') format('woff2');
+    font-weight: 300 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('FONTS/inter-latin.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
 :root {
     --primary-color: #ff6d00;
     --primary-hover: #ff8534;
@@ -26,6 +41,8 @@
     --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 html {
@@ -38,7 +55,7 @@ body {
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: var(--font-text);
     background-color: var(--page-bg);
     display: flex;
     flex-direction: column;
@@ -79,6 +96,18 @@ body.no-scroll {
 :focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* La voix display de la marque : titres et éléments d'identité */
+h1, h2, h3, h4,
+.chooser-city,
+.shop-switch,
+nav a {
+    font-family: var(--font-display);
+}
+
+.hero h1 {
+    letter-spacing: -0.015em;
 }
 
 /* ===== HEADER ===== */
@@ -124,6 +153,7 @@ nav a {
     color: var(--light-text);
     font-weight: 600;
     font-size: 1rem;
+    white-space: nowrap;
     padding: 0.5rem 1.25rem;
     border-radius: 8px;
     transition: var(--transition);
@@ -859,24 +889,20 @@ footer p {
     }
 }
 
-/* Tablet */
-@media (max-width: 1024px) {
-    main {
-        padding: 2rem 4%;
+/* Nav resserrée aux largeurs intermédiaires */
+@media (max-width: 1280px) and (min-width: 1024px) {
+    nav {
+        gap: 0.5rem;
     }
 
-    .hero {
-        padding: 3rem 1.5rem;
-    }
-
-    .services {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+    nav a {
+        font-size: 0.92rem;
+        padding: 0.5rem 0.8rem;
     }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* Menu burger dès que la navigation complète ne tient plus */
+@media (max-width: 1023px) {
     .burger {
         display: flex;
     }
@@ -906,7 +932,26 @@ footer p {
         text-align: center;
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+}
 
+/* Tablet */
+@media (max-width: 1024px) {
+    main {
+        padding: 2rem 4%;
+    }
+
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .services {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
     main {
         padding: 2rem 4%;
     }
@@ -1121,6 +1166,21 @@ footer p {
     margin-top: 0.15rem;
 }
 
+.chooser-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: var(--gray-text);
+    margin-top: 0.45rem;
+}
+
+.chooser-rating svg {
+    width: 12px;
+    height: 12px;
+    color: var(--primary-color);
+}
+
 .chooser-tag {
     font-size: 0.72rem;
     font-weight: 600;
@@ -1223,8 +1283,8 @@ body[data-shop="amberieu"] .map-pin[data-shop="amberieu"] .your-shop-chip {
 }
 
 /* ===== AFFICHAGE PAR BOUTIQUE ===== */
-body[data-shop="meximieux"] .shop-block[data-shop-block="amberieu"],
-body[data-shop="amberieu"] .shop-block[data-shop-block="meximieux"] {
+body[data-shop="meximieux"] [data-shop-block="amberieu"],
+body[data-shop="amberieu"] [data-shop-block="meximieux"] {
     display: none;
 }
 
@@ -1457,5 +1517,364 @@ body[data-shop="amberieu"] .map-pin[data-shop="amberieu"] .pin-marker {
 
     .contact-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ===== ACCUEIL : ACTIONS DU HÉRO ===== */
+.hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin-top: 1.9rem;
+}
+
+a.btn-primary {
+    text-decoration: none;
+}
+
+.btn-primary svg,
+.btn-ghost svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 1.5px solid #dcdcdc;
+    color: var(--dark-text);
+    font: inherit;
+    font-weight: 600;
+    padding: 0.75rem 1.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-ghost:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-deep);
+}
+
+.hero-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+}
+
+.hero-rating a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: var(--transition-fast);
+}
+
+.hero-rating a:hover {
+    color: var(--primary-deep);
+}
+
+.stars {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--primary-color);
+}
+
+.stars svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* ===== ACCUEIL : SECTIONS ===== */
+.home-section {
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.home-section > h2 {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    color: var(--dark-text);
+    text-align: center;
+    margin-bottom: 0.4rem;
+}
+
+.section-sub {
+    color: var(--gray-text);
+    text-align: center;
+    font-size: 0.95rem;
+    margin-bottom: 2.1rem;
+}
+
+/* Étapes du parcours */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.step {
+    text-align: center;
+    padding: 0 0.75rem;
+}
+
+.step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 109, 0, 0.12);
+    color: var(--primary-deep);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.step h3 {
+    font-size: 1.1rem;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+}
+
+.step p {
+    color: var(--gray-text);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* Marques prises en charge */
+.brands-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.brand-chip {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--dark-text);
+    border: 1.5px solid #e4e4e4;
+    border-radius: 999px;
+    padding: 0.5rem 1.05rem;
+    transition: var(--transition-fast);
+}
+
+.brand-chip:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-deep);
+}
+
+.brands-note {
+    text-align: center;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    margin-top: 1.6rem;
+}
+
+/* Avis Google */
+.reviews-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-bottom: 1.8rem;
+}
+
+.reviews-score {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--dark-text);
+}
+
+.reviews-meta {
+    font-size: 0.88rem;
+    color: var(--gray-text);
+    line-height: 1.5;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.review-card {
+    background: var(--light-gray);
+    border-radius: 12px;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.review-card .stars svg {
+    width: 14px;
+    height: 14px;
+}
+
+.review-text {
+    color: #444444;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    flex: 1;
+}
+
+.review-author {
+    font-weight: 600;
+    color: var(--dark-text);
+    font-size: 0.88rem;
+}
+
+.review-author span {
+    display: block;
+    font-weight: 400;
+    color: var(--gray-text);
+    font-size: 0.78rem;
+    margin-top: 2px;
+}
+
+.reviews-link {
+    text-align: center;
+    margin-top: 1.6rem;
+    font-size: 0.9rem;
+}
+
+.reviews-link a {
+    color: var(--primary-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: var(--transition-fast);
+}
+
+.reviews-link a:hover {
+    color: var(--primary-color);
+}
+
+/* Bandeau d'appel final */
+.cta-band {
+    background: var(--dark-bg);
+    border-radius: 20px;
+    padding: 2.75rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.cta-band h2 {
+    color: var(--light-text);
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    margin-bottom: 0.5rem;
+}
+
+.cta-band p {
+    color: #b9b9b9;
+    margin-bottom: 1.6rem;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.cta-band .btn-ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+}
+
+.cta-band .btn-ghost:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* ===== BARRE D'ACTIONS MOBILE ===== */
+.mobile-actions {
+    display: none;
+}
+
+/* ===== APPARITION DOUCE AU DÉFILEMENT ===== */
+html.js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.js .reveal.revealed {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.js .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ===== RESPONSIVE ACCUEIL + BARRE MOBILE ===== */
+@media (max-width: 768px) {
+    .home-section {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .steps,
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        padding: 0;
+    }
+
+    .mobile-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 900;
+        padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid #e6e6e6;
+    }
+
+    .mobile-actions .btn-primary,
+    .mobile-actions .btn-ghost {
+        justify-content: center;
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    body {
+        padding-bottom: 68px;
     }
 }
