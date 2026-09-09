@@ -10,7 +10,7 @@ Site statique en HTML, CSS et JavaScript purs, sans build ni dépendance. Héber
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Tout le site : 6 onglets affichés un à la fois (accueil, boutiques, partenaires, qui sommes-nous, contact, mentions légales), pop-up de choix de boutique, barre d'actions mobile, données structurées LocalBusiness |
+| `index.html` | Tout le site : 5 onglets affichés un à la fois (accueil, boutiques, qui sommes-nous, contact, mentions légales), pop-up de choix de boutique, barre d'actions mobile, données structurées LocalBusiness |
 | `styles.css` | Styles complets, organisés par sections commentées |
 | `script.js` | Navigation par onglets et hash, choix de boutique, pop-up, épingles carte, apparitions au défilement |
 | `404.html` | Page introuvable (servie automatiquement par Cloudflare Pages) |
@@ -28,7 +28,6 @@ Les blocs propres à une boutique portent `data-shop-block="meximieux|amberieu"`
 
 - **Horaires** : dans `index.html`, les deux blocs de la section contact, et les `openingHoursSpecification` du JSON-LD dans le `<head>`. Seul le samedi diffère entre les boutiques (Meximieux ferme à midi).
 - **Avis Google** : section « Ils nous font confiance » de l'accueil, un bloc par boutique. Ce sont de vrais avis publiés sur les fiches Google, à tenir à jour de temps en temps (notes et nombres d'avis aussi : héro, pop-up, fiches de la carte).
-- **Partenaires relais** : page partenaires ; un partenariat arrêté reste affiché avec la classe `discontinued` et le badge « Partenariat terminé ».
 - **Images** : convertir en WebP redimensionné avant d'ajouter (les photos brutes de téléphone pèsent plusieurs Mo).
 
 ## Développement local

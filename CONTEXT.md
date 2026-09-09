@@ -21,19 +21,11 @@ La décision, obligatoire en début de visite, qui désigne la boutique choisie.
 _Avoid_: sélection de magasin, mode deux boutiques
 
 **Onglet** :
-Une des six rubriques du site, affichées une seule à la fois : Accueil, Nos Boutiques, Nos Partenaires, Qui sommes-nous, Nous contacter, Mentions légales.
+Une des cinq rubriques du site, affichées une seule à la fois : Accueil, Nos Boutiques, Qui sommes-nous, Nous contacter, Mentions légales.
 _Avoid_: page
 
 **Horaires** :
 Les heures d'ouverture propres à une boutique. Seul le samedi diffère entre les deux : Meximieux ferme à midi, Ambérieu fait la journée complète.
-
-**Partenaire actif** :
-Un service de point relais assuré aujourd'hui par une boutique. Actuellement : Vinted Go, à Meximieux uniquement.
-_Avoid_: partenaire disponible
-
-**Partenariat terminé** :
-Un service de point relais qui n'est plus assuré mais reste annoncé pour informer la clientèle. Actuellement : Colis Privé.
-_Avoid_: partenaire supprimé, partenaire inactif
 
 **Épingle** :
 Le marqueur d'une boutique sur la carte de l'Ain ; l'ouvrir révèle la fiche de la boutique (photo, quartier, adresse).

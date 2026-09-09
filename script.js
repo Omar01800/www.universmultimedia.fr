@@ -6,7 +6,7 @@ const pages = document.querySelectorAll('.page-content');
 const header = document.querySelector('header');
 
 // ===== NAVIGATION ENTRE LES PAGES =====
-const PAGE_IDS = ['accueil', 'boutiques', 'partenaires', 'qui-sommes-nous', 'contact', 'mentions-legales'];
+const PAGE_IDS = ['accueil', 'boutiques', 'qui-sommes-nous', 'contact', 'mentions-legales'];
 let pageTransition = null;
 
 function showPage(target, updateHash = true) {
@@ -116,7 +116,6 @@ const shopChooser = document.getElementById('shopChooser');
 const chooserCard = shopChooser.querySelector('.chooser-card');
 const shopSwitch = document.getElementById('shopSwitch');
 const shopSwitchLabel = document.getElementById('shopSwitchLabel');
-const partnersEmpty = document.getElementById('partnersEmpty');
 const contactSwitchNote = document.getElementById('contactSwitchNote');
 let lastFocused = null;
 
@@ -133,7 +132,6 @@ function applyShop(shop) {
     document.body.dataset.shop = shop;
     shopSwitchLabel.textContent = SHOP_LABELS[shop];
     saveChoice(shop);
-    partnersEmpty.hidden = shop !== 'amberieu';
     contactSwitchNote.hidden = false;
     shopChooser.querySelectorAll('.chooser-option').forEach(btn => {
         btn.classList.toggle('selected', btn.dataset.choose === shop);

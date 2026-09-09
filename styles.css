@@ -535,151 +535,6 @@ main {
     box-shadow: var(--shadow-md);
 }
 
-/* ===== PARTENAIRES PAGE ===== */
-.partners-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.partner-card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-}
-
-.partner-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(255, 109, 0, 0.2);
-}
-
-.partner-logo-container {
-    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
-    padding: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 180px;
-    border-bottom: 3px solid var(--primary-color);
-}
-
-.partner-logo {
-    max-width: 200px;
-    max-height: 120px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-}
-
-.partner-content {
-    padding: 2rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.partner-content h3 {
-    font-size: 1.5rem;
-    color: var(--dark-text);
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.partner-description {
-    color: var(--gray-text);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    flex: 1;
-}
-
-.partner-description strong {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.partner-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-    margin-top: auto;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    background: var(--light-gray);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--dark-text);
-    transition: var(--transition-fast);
-}
-
-.feature-item:hover {
-    background: rgba(255, 109, 0, 0.1);
-    transform: translateX(3px);
-}
-
-.feature-icon {
-    display: inline-flex;
-    flex-shrink: 0;
-}
-
-.feature-icon svg {
-    width: 18px;
-    height: 18px;
-    color: var(--primary-color);
-}
-
-.info-banner {
-    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-    border: 1px solid rgba(255, 109, 0, 0.35);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    margin-top: 2rem;
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-    box-shadow: var(--shadow-sm);
-}
-
-.info-icon {
-    display: flex;
-    flex-shrink: 0;
-    margin-top: 0.15rem;
-}
-
-.info-icon svg {
-    width: 26px;
-    height: 26px;
-    color: var(--primary-deep);
-}
-
-.info-content h4 {
-    font-size: 1.125rem;
-    color: var(--dark-text);
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-.info-content p {
-    color: var(--gray-text);
-    line-height: 1.6;
-    margin: 0;
-}
-
-.info-content strong {
-    color: var(--dark-text);
-    font-weight: 600;
-}
-
 /* ===== BOUTIQUES PAGE ===== (suite) */
 
 .map-container h2 {
@@ -967,39 +822,6 @@ footer p {
     .services {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-    }
-
-    .partners-section {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .partner-logo-container {
-        padding: 2rem;
-        min-height: 140px;
-    }
-
-    .partner-logo {
-        max-width: 160px;
-        max-height: 100px;
-    }
-
-    .partner-content {
-        padding: 1.5rem;
-    }
-
-    .partner-features {
-        grid-template-columns: 1fr;
-    }
-
-    .info-banner {
-        flex-direction: column;
-        padding: 1.25rem 1.5rem;
-        gap: 1rem;
-    }
-
-    .info-icon {
-        font-size: 1.5rem;
     }
 
     .schedule-row {
@@ -1296,98 +1118,12 @@ body[data-shop] .contact-container {
     max-width: 700px;
 }
 
-body[data-shop="amberieu"] .partner-card[data-available="meximieux"] {
-    display: none;
-}
-
-body[data-shop="amberieu"] .info-banner {
-    display: none;
-}
-
 body[data-shop="meximieux"] .map-pin[data-shop="meximieux"] .pin-marker,
 body[data-shop="amberieu"] .map-pin[data-shop="amberieu"] .pin-marker {
     box-shadow: 0 0 0 6px rgba(255, 109, 0, 0.3), var(--shadow-sm);
 }
 
-/* ===== DISPONIBILITÉ PARTENAIRE ===== */
-.partner-availability {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    align-self: flex-start;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--primary-deep);
-    background: rgba(255, 109, 0, 0.1);
-    padding: 0.3rem 0.65rem;
-    border-radius: 999px;
-    margin-bottom: 0.9rem;
-}
-
-.partner-availability svg {
-    width: 13px;
-    height: 13px;
-}
-
-.partner-availability.ended {
-    color: #6b6b6b;
-    background: #efefef;
-}
-
-/* Partenariat terminé : la carte reste informative mais s'efface visuellement */
-.partner-card.discontinued .partner-logo {
-    filter: grayscale(1);
-    opacity: 0.55;
-}
-
-.partner-card.discontinued .partner-logo-container {
-    border-bottom-color: #d9d9d9;
-}
-
-.partner-card.discontinued:hover {
-    transform: none;
-    box-shadow: var(--shadow-md);
-}
-
-.partner-card.discontinued h3 {
-    color: #555555;
-}
-
-.partner-card.discontinued .partner-description strong {
-    color: #555555;
-}
-
-/* ===== ÉTAT VIDE PARTENAIRES (AMBÉRIEU) ===== */
-.partners-empty {
-    background: white;
-    border-radius: 15px;
-    box-shadow: var(--shadow-md);
-    padding: 3rem 2rem;
-    text-align: center;
-    max-width: 640px;
-    margin: 3rem auto 0;
-}
-
-.partners-empty svg {
-    width: 54px;
-    height: 54px;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.partners-empty h3 {
-    font-size: 1.35rem;
-    color: var(--dark-text);
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-}
-
-.partners-empty p {
-    color: var(--gray-text);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
+/* ===== BOUTON PRINCIPAL ===== */
 .btn-primary {
     display: inline-block;
     background: var(--primary-color);
@@ -2009,9 +1745,7 @@ html.js .reveal.revealed {
     .map-container,
     .content-card,
     .schedule-table,
-    .contact-info,
-    .partner-card,
-    .partners-empty {
+    .contact-info {
         box-shadow: none;
         border: 1px solid #dddddd;
     }
