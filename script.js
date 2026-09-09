@@ -147,12 +147,22 @@ function applyShop(shop) {
     });
 }
 
+// Pendant la pop-up, le reste de la page est inerte : le focus et les lecteurs
+// d'écran ne peuvent pas quitter le dialogue (le piège Tab reste en secours
+// pour les navigateurs sans attribut inert)
+function setBackgroundInert(isInert) {
+    document.querySelectorAll('header, main, footer, .mobile-actions').forEach(el => {
+        el.inert = isInert;
+    });
+}
+
 function openChooser() {
     lastFocused = document.activeElement;
     // Tant qu'aucune boutique n'est choisie, le choix est obligatoire :
     // pas de croix, et la fermeture par clic dehors ou Echap est neutralisee
     shopChooser.querySelector('.chooser-close').hidden = !document.body.dataset.shop;
     shopChooser.hidden = false;
+    setBackgroundInert(true);
     document.body.classList.add('no-scroll');
     requestAnimationFrame(() => {
         shopChooser.classList.add('visible');
@@ -164,6 +174,7 @@ function openChooser() {
 
 function closeChooser() {
     shopChooser.classList.remove('visible');
+    setBackgroundInert(false);
     document.body.classList.remove('no-scroll');
     setTimeout(() => { shopChooser.hidden = true; }, 250);
     if (lastFocused && document.contains(lastFocused)) {
